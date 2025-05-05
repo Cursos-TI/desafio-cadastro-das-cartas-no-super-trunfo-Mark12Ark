@@ -11,7 +11,7 @@ int main() {
     char estado1[50], estado2[50];
     char codigo[2] = {'A', 'B'};
     char nome1[50], nome2[50];
-    int populacao1, populacao2;
+    unsigned long int populacao1, populacao2;
     float area1, area2;
     float PIB1, PIB2;
     int pontos1, pontos2;
@@ -21,7 +21,7 @@ int main() {
     // Cadastro das Cartas:
     // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    printf("\n *** Cadastro de Cartas *** \n");
+    printf("@@ -Cadastro de Cartas- @@\n");
     
     printf("\nCadastro da primeira carta: \n");
 
@@ -32,7 +32,7 @@ int main() {
     scanf(" %s", nome1);
 
     printf("Número da população? \n");
-    scanf(" %d", &populacao1);
+    scanf(" %lu", &populacao1);
 
     printf("Número de área? \n");
     scanf(" %f", &area1);
@@ -55,7 +55,7 @@ int main() {
     scanf("%s", nome2);
 
     printf("Número da população? \n");
-    scanf("%d", &populacao2);
+    scanf("%lu", &populacao2);
 
     printf("Número de área? \n");
     scanf("%f", &area2);
@@ -72,6 +72,11 @@ int main() {
 
     PIBC1 = PIB1 / populacao1;
     PIBC2 = PIB2 / populacao2;
+
+    float poder1, poder2;
+
+    poder1 = populacao1 + area1 + PIB1 + pontos1 + PIBC1 - densidade1;
+    poder2 = populacao2 + area2 + PIB2 + pontos2 + PIBC2 - densidade2;
     
     printf("\nCarta 1:\n");
 
@@ -79,19 +84,27 @@ int main() {
 
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
-    printf(". Estado: %s\n. Código: %c01.\n. Nome: %s\n. população: %d\n", estado1, codigo[0], nome1, populacao1);
-    printf(". Área: %f km².\n. PIB: %2.f\n. Pontos Turistíscos: %d\n", area1, PIB1, pontos1);
-    printf(". densidade: %f hab/km².\n. PIB per capita: %f reais.\n", densidade1, PIBC1);
+    printf(". Estado: %s\n Código: %c01\n Nome: %s\n população: %d\n", estado1, codigo[0], nome1, populacao1);
+    printf(". Área: %f km²\n PIB: %2.f\n Pontos Turistíscos: %d\n", area1, PIB1, pontos1);
+    printf(". densidade: %.2f hab/km².\n PIB per capita: %.2f reais\n", densidade1, PIBC1);
+    printf(". O poder de %s é: %.2f\n", nome1, poder1);
 
     printf("\nCarta 2:\n");
 
-    printf(". Estado: %s\n. Código: %c02.\n. Nome: %s\n. população: %d\n", estado2, codigo[1], nome2, populacao2);
-    printf(". Área: %f km².\n. PIB: %2.f\n. Pontos Turistíscos: %d\n", area2, PIB2, pontos2);
-    printf(". densidade: %f hab/km².\n. PIB per capita: %f reais.\n", densidade2, PIBC2);
+    printf(". Estado: %s\n Código: %c02\n Nome: %s\n população: %d\n", estado2, codigo[1], nome2, populacao2);
+    printf(". Área: %f km²\n PIB: %2.f\n Pontos Turistíscos: %d\n", area2, PIB2, pontos2);
+    printf(". densidade: %.2f hab/km²\n PIB per capita: %.2f reais\n", densidade2, PIBC2);
+    printf(". O poder de %s é: %.2f\n", nome2, poder2);
 
-    return 0;
-}
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+    printf("\n**É HORA DO DUELO**\n");
+
+    printf("O vencedor em População: %d\n", populacao1 > populacao2);
+    printf("O vencedor em Área: %d\n", area1 > area2);
+    printf("O vencedor em PIB: %d\n", PIB1 > PIB2);
+    printf("O vencedor em Pontos turísticos: %d\n", pontos1 > pontos2);
+    printf("O vencedor em Densidade: %d\n", densidade1 < densidade2);
+    printf("O vencedor em PIB per capita: %d\n", PIBC1 > PIB2);
+    printf("O vencedor em Poder: %d\n", poder1 > poder2);
 
     return 0;
 }
